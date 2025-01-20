@@ -92,12 +92,10 @@
         <div class=" p-8 md:p-12 lg:px-16 lg:py-24">
             <div class="mx-auto max-w-lg text-center">
                 <h2 class="text-2xl font-bold text-gray-900 md:text-3xl">
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit
+                    Temukan Barang Second Berkualitas dengan Harga Terjangkau!
                 </h2>
                 <p class="hidden text-gray-500 sm:mt-4 sm:block">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae dolor officia blanditiis
-                    repellat in, vero, aperiam porro ipsum laboriosam consequuntur exercitationem incidunt
-                    tempora nisi?
+                    Kami menyediakan berbagai pilihan barang second, mulai dari pakaian, elektronik, hingga aksesori, dengan kualitas terbaik dan harga bersahabat. Mulai petualangan belanja Anda hari ini!
                 </p>
             </div>
             <div class="mx-auto mt-8 max-w-xl">
@@ -131,7 +129,7 @@
         {% if hasil %}
         <div id="productList" class="container grid grid-cols-3 gap-4 max-w-3xl mx-auto py-8">
             {% for products in hasil %}
-                <a href="https://wa.me/{{products.1}}?text=Izanami Store Saya Mau Beli AirPods" class="group block">
+                <a href="https://wa.me/{{products.1}}?text=Izanami Store Saya Mau Beli {{products.3}}" class="group block">
                     <img src="{{ url_for('gambar', id=products.0) }}" alt="Product Image">
                     <div class="mt-3">
                         <h3 class="font-medium text-gray-900 group-hover:underline group-hover:underline-offset-4">
