@@ -5,7 +5,7 @@ from io import BytesIO
 app = Flask(__name__)
 
 db = connector.connect(
-    host="qms5e.h.filess.io,
+    host="qms5e.h.filess.io",
     database="izamiStore_soonjungle",
     user="izamiStore_soonjungle",
     password="11cb95020d41e7997b598c9546535104865d1971",
