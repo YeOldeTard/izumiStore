@@ -65,10 +65,7 @@ def proses_tambah():
         return render_template('tambah.html', error="Nama sudah ada. Mohon gunakan nama yang berbeda.")
 
     cur = db.cursor()
-    cur.execute(
-        'INSERT INTO products (id, WhatsApp, Image, Product_name, Price) VALUES (%s, %s, %s, %s, %s)',
-        (id, WhatsApp, image, Product_name, Price)
-    )
+    cur.execute('INSERT INTO products (id, WhatsApp, Image, Product_name, Price) VALUES (%s, %s, %s, %s, %s)',(id, WhatsApp, image, Product_name, Price))
     db.commit()
     cur.close()
     return redirect(url_for('admin_ds'))
