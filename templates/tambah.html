@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Input Data Barang</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f9f9f9;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .form-container {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .form-group input[type="file"] {
+            padding: 5px;
+        }
+        .form-group input:focus {
+            border-color: #3949AB;
+            outline: none;
+        }
+        .form-actions {
+            text-align: center;
+        }
+        .form-actions button {
+            background-color: #3949AB;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .form-actions button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <form action="/proses_tambah/" method="POST"> 
+        <h1>Masukkan Data Barang</h1>
+        <div class="form-container">
+                <div class="form-group">
+                    <label for="Product_name">Product</label>
+                    <input type="text" id="product" name="Product_name" placeholder="Masukkan nama produk" required>
+                </div>
+                <div class="form-group">
+                    <label for="WhatsApp">No. WA</label>
+                    <input type="text" id="no_wa" name="WhatsApp" placeholder="Masukkan nomor WhatsApp" required>
+                </div>
+                <div class="form-group">
+                    <label for="image">Image</label>
+                    <input type="file" id="image" name="image" accept="image/*" required>
+                </div>
+                <div class="form-group">
+                    <label for="Price">Harga</label>
+                    <input type="text" id="harga" name="Price" placeholder="Masukkan harga produk" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit">Simpan Data</button>
+                </div>
+        </div>
+    </form>
+</body>
+</html>
