@@ -16,13 +16,7 @@ if db.is_connected():
     print('Open connection successful')
 
 @app.route('/gambar/<int:id>')
-def gambar(id):
-    cur = db.cursor()
-    cur.execute('SELECT image FROM products WHERE id=%s', (id,))
-    image_data = cur.fetchone()[0]
-    cur.close()
-    if image_data:
-        return Response(image_data, mimetype='image/jpeg')
+def gambar():
     return 'Image not found', 404
 
 @app.route('/')
@@ -47,7 +41,6 @@ def tambah_data():
 
 @app.route('/proses_tambah/', methods=['POST'])
 def proses_tambah():
-    id = request.form.get('id', '').strip()
     WhatsApp = request.form.get('WhatsApp', '').strip()
     image = request.form.get('image', '').strip()
     Product_name = request.form.get('Product_name', '').strip()
@@ -56,8 +49,15 @@ def proses_tambah():
     if not WhatsApp or not Product_name or not Price:
         return render_template('tambah.html', error="Semua field wajib diisi.")
     
+    try:
+        Price = float(Price)  # Convert to float
+        if Price < 0:  # Check for negative price
+            return render_template('tambah.html', error="Harga tidak boleh negatif.")
+    except ValueError:
+        return render_template('tambah.html', error="Harga tidak valid. Harap masukkan angka yang benar.")
+
     cur = db.cursor()
-    cur.execute("SELECT * FROM products WHERE id = %s", (id,))
+    cur.execute("SELECT * FROM products WHERE WhatsApp = %s", (WhatsApp,))
     existing_products = cur.fetchone()
     cur.close()
 
@@ -65,7 +65,10 @@ def proses_tambah():
         return render_template('tambah.html', error="Nama sudah ada. Mohon gunakan nama yang berbeda.")
 
     cur = db.cursor()
-    cur.execute('INSERT INTO products (id, WhatsApp, Image, Product_name, Price) VALUES (%s, %s, %s, %s, %s)',(id, WhatsApp, image, Product_name, Price))
+    cur.execute(
+        'INSERT INTO products (WhatsApp, Image, Product_name, Price) VALUES (%s, %s, %s, %s)',
+        (WhatsApp, image, Product_name, Price)
+    )
     db.commit()
     cur.close()
     return redirect(url_for('admin_ds'))
@@ -90,13 +93,25 @@ def proses_ubah():
     Product_name = request.form.get('Product_name', '').strip()
     Price = request.form.get('Price', '').strip()
 
+    # Validate Price
+    try:
+        Price = float(Price)  # Convert to float
+        if Price < 0:  # Check for negative price
+            return render_template('ubah.html', error="Harga tidak boleh negatif.")
+    except ValueError:
+        return render_template('ubah.html', error="Harga tidak valid. Harap masukkan angka yang benar.")
+
     cur = db.cursor()
-    sql = "UPDATE products SET id=%s, WhatsApp=%s, image=%s, Product_name=%s, Price=%s WHERE Product_name=%s"
-    values = (id, WhatsApp, image, Product_name, Price, product_awal)
+    
+    # Corrected SQL statement
+    sql = "UPDATE products SET WhatsApp=%s, Image=%s, Product_name=%s, Price=%s WHERE Product_name=%s"
+    values = (WhatsApp, image, Product_name, Price, product_awal)
+    
     cur.execute(sql, values)
     db.commit()
     cur.close()
     return redirect(url_for('admin_ds'))
+
 
 @app.route('/hapus/<Product_name>', methods=['GET'])
 def hapus_data(Product_name):

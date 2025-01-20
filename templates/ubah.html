@@ -68,6 +68,7 @@
             <h1>Ubah Data Barang</h1>
             <div class="form-container">
                 <!-- Hidden input to store the product ID -->
+                <input type="hidden" name="id" value="{{ products[0] }}">
                 <input type="hidden" name="product_awal" value="{{products[1]}}">
                 
                 <div class="form-group">
@@ -81,7 +82,11 @@
                 <div class="form-group">
                     <label for="image">Image</label>
                     <input type="file" id="image" name="image" accept="image/*">
-                    <p>Current image: <img src="{{ url_for('gambar', id=products.0) }}" alt="Product Image"></p>
+                    {% if products[2] %}
+                        <p>Current image: <img src="{{ url_for('gambar', id=products[0]) }}" alt="Product Image" style="max-width: 100%; height: auto;"></p>
+                    {% else %}
+                        <p>No image available.</p>
+                    {% endif %}
                 </div>
                 <div class="form-group">
                     <label for="Price">Harga</label>
