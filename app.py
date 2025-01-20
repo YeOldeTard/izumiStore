@@ -5,11 +5,11 @@ from io import BytesIO
 app = Flask(__name__)
 
 db = connector.connect(
-    host="w5wo2.h.filess.io",
-    database="IzamiStore_forgotten",
-    user="IzamiStore_forgotten",
-    password="3caab894cff44be0ac7c19d67c6480f9337999bd",
-    port="3307"
+    host="qms5e.h.filess.io,
+    database="izamiStore_soonjungle",
+    user="izamiStore_soonjungle",
+    password="11cb95020d41e7997b598c9546535104865d1971",
+    port="3306"
 )
 
 if db.is_connected():
