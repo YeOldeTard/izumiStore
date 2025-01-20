@@ -57,7 +57,7 @@ def proses_tambah():
         return render_template('tambah.html', error="Semua field wajib diisi.")
     
     cur = db.cursor()
-    cur.execute("SELECT * FROM products WHERE WhatsApp = %s", (WhatsApp,))
+    cur.execute("SELECT * FROM products WHERE id = %s", (id,))
     existing_products = cur.fetchone()
     cur.close()
 
