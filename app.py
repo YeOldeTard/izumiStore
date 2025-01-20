@@ -66,7 +66,7 @@ def proses_tambah():
 
     cur = db.cursor()
     cur.execute(
-        'INSERT INTO products (id, WhatsApp, image, Product_name, Price) VALUES (%s, %s, %s, %s, %s)',
+        'INSERT INTO products (id, WhatsApp, Image, Product_name, Price) VALUES (%s, %s, %s, %s, %s)',
         (id, WhatsApp, image, Product_name, Price)
     )
     db.commit()
